@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>Cache | Funing Ma&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical appl">
+<meta name="keywords" content="Cache,Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cache">
+<meta property="og:url" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;index.html">
+<meta property="og:site_name" content="Funing Ma&#39;s Blog">
+<meta property="og:description" content="Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical appl">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;JSR107_info.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;SpringCache.png">
+<meta property="og:updated_time" content="2020-11-29T08:45:33.252Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;JSR107_info.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Funing Ma&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Funing Ma</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">Developer. Designer</p>
+        
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Links</li>
+                        
+                        
+                        <li>About</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">article</a></li>
+                        
+                            <li><a  href="/categories/backend">backend</a></li>
+                        
+                            <li><a  href="/categories/frontend">frontend</a></li>
+                        
+                            <li><a  href="/categories/database">database</a></li>
+                        
+                            <li><a  href="/categories/algorithm">algorithm</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/mafuning" title="github">github</a>
+                            
+                                <a class="fl twitter"  target="_blank" href="https://twitter.com/github" title="twitter">twitter</a>
+                            
+                                <a class="fl facebook"  target="_blank" href="https://www.facebook.com/github" title="facebook">facebook</a>
+                            
+                                <a class="fl google"  target="_blank" href="https://www.google.com/search?q=github" title="google">google</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/AVL-Tree/" style="font-size: 10px;">AVL Tree</a> <a href="/tags/Adapter/" style="font-size: 10px;">Adapter</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/tags/Bean-Life-Cycle/" style="font-size: 10px;">Bean Life Cycle</a> <a href="/tags/Binary/" style="font-size: 10px;">Binary</a> <a href="/tags/Binary-Sort-Tree/" style="font-size: 10px;">Binary Sort Tree</a> <a href="/tags/Binary-Tree/" style="font-size: 10px;">Binary Tree</a> <a href="/tags/Bridge/" style="font-size: 10px;">Bridge</a> <a href="/tags/Bubble/" style="font-size: 10px;">Bubble</a> <a href="/tags/Builder/" style="font-size: 10px;">Builder</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/Category/" style="font-size: 10px;">Category</a> <a href="/tags/Chain-of-Responsibility/" style="font-size: 10px;">Chain of Responsibility</a> <a href="/tags/Characters/" style="font-size: 10px;">Characters</a> <a href="/tags/Chessboard/" style="font-size: 10px;">Chessboard</a> <a href="/tags/Command/" style="font-size: 10px;">Command</a> <a href="/tags/Composite/" style="font-size: 10px;">Composite</a> <a href="/tags/DVCS/" style="font-size: 10px;">DVCS</a> <a href="/tags/Data-Structure/" style="font-size: 18px;">Data Structure</a> <a href="/tags/DataBase/" style="font-size: 10px;">DataBase</a> <a href="/tags/Decorator/" style="font-size: 10px;">Decorator</a> <a href="/tags/Design-Patterns/" style="font-size: 20px;">Design Patterns</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Divide-And-Conquer/" style="font-size: 10px;">Divide-And-Conquer</a> <a href="/tags/Dynamic/" style="font-size: 10px;">Dynamic</a> <a href="/tags/Error/" style="font-size: 10px;">Error</a> <a href="/tags/Facade/" style="font-size: 10px;">Facade</a> <a href="/tags/Factory/" style="font-size: 10px;">Factory</a> <a href="/tags/Fibonacci/" style="font-size: 10px;">Fibonacci</a> <a href="/tags/Floyd/" style="font-size: 10px;">Floyd</a> <a href="/tags/Flyweight/" style="font-size: 10px;">Flyweight</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/Hash-Table/" style="font-size: 10px;">Hash Table</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Huffman-Tree/" style="font-size: 10px;">Huffman Tree</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/Insertion/" style="font-size: 10px;">Insertion</a> <a href="/tags/Interpolation/" style="font-size: 10px;">Interpolation</a> <a href="/tags/Interpreter/" style="font-size: 10px;">Interpreter</a> <a href="/tags/Introduction/" style="font-size: 10px;">Introduction</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Knight-Tour/" style="font-size: 10px;">Knight Tour</a> <a href="/tags/Kruskal/" style="font-size: 10px;">Kruskal</a> <a href="/tags/Linear/" style="font-size: 10px;">Linear</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mediator/" style="font-size: 10px;">Mediator</a> <a href="/tags/Memento/" style="font-size: 10px;">Memento</a> <a href="/tags/Merge/" style="font-size: 10px;">Merge</a> <a href="/tags/Netty/" style="font-size: 10px;">Netty</a> <a href="/tags/Nio/" style="font-size: 10px;">Nio</a> <a href="/tags/Observer/" style="font-size: 10px;">Observer</a> <a href="/tags/Optimal-Solutions/" style="font-size: 10px;">Optimal Solutions</a> <a href="/tags/Optimization/" style="font-size: 10px;">Optimization</a> <a href="/tags/Prim/" style="font-size: 10px;">Prim</a> <a href="/tags/Principles/" style="font-size: 10px;">Principles</a> <a href="/tags/Programming/" style="font-size: 10px;">Programming</a> <a href="/tags/Prototype/" style="font-size: 10px;">Prototype</a> <a href="/tags/Proxy/" style="font-size: 10px;">Proxy</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Quick/" style="font-size: 10px;">Quick</a> <a href="/tags/Quick-Start/" style="font-size: 10px;">Quick Start</a> <a href="/tags/Radix/" style="font-size: 10px;">Radix</a> <a href="/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Search/" style="font-size: 14px;">Search</a> <a href="/tags/Selection/" style="font-size: 10px;">Selection</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Shortest-Paths/" style="font-size: 14px;">Shortest Paths</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/Sort/" style="font-size: 16px;">Sort</a> <a href="/tags/Sparse-Array/" style="font-size: 10px;">Sparse Array</a> <a href="/tags/Spring/" style="font-size: 12px;">Spring</a> <a href="/tags/Sql/" style="font-size: 10px;">Sql</a> <a href="/tags/Stack/" style="font-size: 10px;">Stack</a> <a href="/tags/State/" style="font-size: 10px;">State</a> <a href="/tags/Strategy/" style="font-size: 10px;">Strategy</a> <a href="/tags/Template-Method/" style="font-size: 10px;">Template Method</a> <a href="/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/tags/UpdateBatch/" style="font-size: 10px;">UpdateBatch</a> <a href="/tags/Visitor/" style="font-size: 10px;">Visitor</a> <a href="/tags/Webpages/" style="font-size: 10px;">Webpages</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://www.google.com/">google</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://www.oschina.net/">oschina</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com">jianshu</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Please don&#39;t hesitate to contact me if you have any questions. email:funing_ma@163.com</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Home">Funing Ma</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Home">Funing Ma</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Developer. Designer</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">article</a></li>
+                
+                    <li><a href="/categories/backend">backend</a></li>
+                
+                    <li><a href="/categories/frontend">frontend</a></li>
+                
+                    <li><a href="/categories/database">database</a></li>
+                
+                    <li><a href="/categories/algorithm">algorithm</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/mafuning" title="github">github</a>
+                    
+                        <a class="twitter" target="_blank" href="https://twitter.com/github" title="twitter">twitter</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/github" title="facebook">facebook</a>
+                    
+                        <a class="google" target="_blank" href="https://www.google.com/search?q=github" title="google">google</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2020-10-18-Cache" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2020/10/18/2020-10-18-Cache/" class="article-date">
+      <time datetime="2020-10-18T10:18:18.000Z" itemprop="datePublished">2020-10-18</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cache
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/backend/">backend</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.</p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><h2 id="一、-JSR107"><a href="#一、-JSR107" class="headerlink" title="一、 JSR107"></a>一、 JSR107</h2><p>Java Caching定义了5个核心接口</p>
+<ul>
+<li><p>CachingProvider</p>
+<p>定义了创建、配置、获取、管理和控制多个CacheManager。一个应用可以在运行期访问多个CachingProvider。</p>
+</li>
+<li><p>CacheManager</p>
+<p>定义了创建、配置、获取、管理和控制多个唯一命名的Cache，这些Cache存在于CacheManager的上下文中。一个CacheManager仅被一个CachingProvider所拥有。</p>
+</li>
+<li><p>Cache</p>
+<p>一个类似<strong>Map</strong>的数据结构并<strong>临时存储以Key为索引</strong>的值。一个Cache仅被一个<br>CacheManager所拥有。</p>
+</li>
+<li><p>Entry</p>
+<p>一个存储在Cache中的key-value对。</p>
+</li>
+<li><p>Expiry</p>
+<p>每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</p>
+<p>jsr107示意图：</p>
+<img src="/2020/10/18/2020-10-18-Cache/JSR107_info.png" class title="introduction">
+
+</li>
+</ul>
+<p><strong>使用JSR107需要导入如下包</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.cache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cache-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于一些cache框架或产品，我们可以发现一些明显不足。<br>Spring cache：无法满足本地缓存和远程缓存同时使用，使用远程缓存时无法自动刷新<br>Guava cache：内存型缓存，占用内存，无法做分布式缓存<br>redis/memcache：分布式缓存，缓存失效时，会导致数据库雪崩效应<br>Ehcache：内存型缓存，可以通过RMI做到全局分布缓存，效果差</p>
+<p>基于以上的一些不足，大杀器缓存框架JetCache出现，基于已有缓存的成熟产品，解决了上面产品的缺陷。主要表现在<br>（1）分布式缓存和内存型缓存可以共存，当共存时，优先访问内存，保护远程缓存；也可以只用某一种，分布式 or 内存<br>（2）自动刷新策略，防止某个缓存失效，访问量突然增大时，所有机器都去访问数据库，可能导致数据库挂掉<br>（3）利用不严格的分布式锁，对同一key，全局只有一台机器自动刷新</p>
+<h2 id="二、-Spring缓存抽象"><a href="#二、-Spring缓存抽象" class="headerlink" title="二、 Spring缓存抽象"></a>二、 Spring缓存抽象</h2><p>  Spring从3.1开始定义了org.springframework.cache.Cache<br>  和org.springframework.cache.CacheManager接口来<strong>统一</strong>不同的缓存技术；<br>  <strong>并支持使用JCache（JSR-107）</strong>注解简化我们开发；</p>
+<p>  Cache接口有以下功能：</p>
+<ul>
+<li><p>为缓存的组件规范定义，包含缓存的各种操作集合；</p>
+</li>
+<li><p>Spring提供了各种xxxCache的实现；如RedisCache，EhCacheCache ,<br>ConcurrentMapCache等；</p>
+<p>Spring缓存抽象：</p>
+<img src="/2020/10/18/2020-10-18-Cache/SpringCache.png" class title="introduction">
+
+
+</li>
+</ul>
+<h2 id="三、-重要缓存注解及概念"><a href="#三、-重要缓存注解及概念" class="headerlink" title="三、 重要缓存注解及概念"></a>三、 重要缓存注解及概念</h2><table>
+<thead>
+<tr>
+<th align="left"><strong>Cache</strong></th>
+<th><strong>缓存接口，定义缓存操作。实现有：RedisCache、EhCacheCache、ConcurrentMapCache等</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>CacheManager</strong></td>
+<td><strong>缓存管理器，管理各种缓存（Cache）组件</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>@Cacheable</strong></td>
+<td><strong>根据方法的请求参数对其结果进行缓存</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>@CacheEvict</strong></td>
+<td><strong>清空缓存</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>@CachePut</strong></td>
+<td><strong>更新缓存</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>@EnableCaching</strong></td>
+<td><strong>开启基于注解的缓存</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>keyGenerator</strong></td>
+<td><strong>缓存数据时key生成策略</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>serialize</strong></td>
+<td><strong>缓存数据时value序列化策略</strong></td>
+</tr>
+</tbody></table>
+<h3 id="1-Cacheable-CachePut-CacheEvict-主要的参数"><a href="#1-Cacheable-CachePut-CacheEvict-主要的参数" class="headerlink" title="1 . @Cacheable/@CachePut/@CacheEvict 主要的参数"></a>1 . @Cacheable/@CachePut/@CacheEvict 主要的参数</h3><ul>
+<li><p><strong>value</strong></p>
+<p>缓存名称，字符串/字符数组形式；</p>
+<p>如@Cacheable(value=”mycache”) 或者@Cacheable(value={”cache1”,”cache2”}</p>
+</li>
+<li><p><strong>key</strong></p>
+<p>缓存的key,需要按照SpEL表达式编写，如果不指定则按照方法所有参数进行组合；</p>
+<p>如@Cacheable(value=”testcache”,key=”#userName”)</p>
+</li>
+<li><p><strong>keyGenerator</strong></p>
+<p>key的生成器；可以自己指定key的生成器的组件id</p>
+<p>注意：key/keyGenerator：二选一使用;</p>
+</li>
+<li><p><strong>condition</strong></p>
+<p>缓存条件，使用SpEL编写，在调用方法之前之后都能判断；</p>
+<p>如@Cacheable(value=”testcache”,condition=”#userName.length()&gt;2”)</p>
+</li>
+<li><p><strong>unless</strong>（@CachePut、@Cacheable）</p>
+<p>用于否决缓存的条件，只在方法执行之后判断；</p>
+<p>如@Cacheable(value=”testcache”,unless=”#result ==null”)</p>
+</li>
+<li><p><strong>beforeInvocation</strong>（@CacheEvict）</p>
+<p>是否在执行前清空缓存，默认为false，false情况下方法执行异常则不会清空；</p>
+<p>如@CachEvict(value=”testcache”，beforeInvocation=true)</p>
+</li>
+<li><p><strong>allEntries</strong>（@CacheEvict）</p>
+<p>是否清空所有缓存内容，默认为false；</p>
+<p>如@CachEvict(value=”testcache”,allEntries=true)</p>
+</li>
+</ul>
+<h3 id="2-缓存可用的SpEL表达式"><a href="#2-缓存可用的SpEL表达式" class="headerlink" title="2 . 缓存可用的SpEL表达式"></a>2 . 缓存可用的SpEL表达式</h3><p><strong>root</strong></p>
+<p>表示根对象，不可省略</p>
+<ul>
+<li><p>被调用方法名                        <strong>methodName</strong> </p>
+<p>如 #root.methodName</p>
+</li>
+<li><p>被调用方法                            <strong>method</strong></p>
+<p>如 #root.method.name</p>
+</li>
+<li><p>目标对象                               <strong>target</strong></p>
+<p>如 #root.target</p>
+</li>
+<li><p>被调用的目标对象类           <strong>targetClass</strong></p>
+<p>如 #root.targetClass</p>
+</li>
+<li><p>被调用的方法的参数列表      <strong>args</strong>    </p>
+<p>如 #root.args[0]</p>
+</li>
+<li><p>方法调用使用的缓存列表      <strong>caches</strong></p>
+<p>如 #root.caches[0].name</p>
+</li>
+</ul>
+<p><strong>参数名</strong></p>
+<p>方法参数的名字. 可以直接 #参数名 ，也可以使用 #p0或#a0 的形式，0代表参数的索引；</p>
+<p>如 #iban 、 #a0 、 #p0</p>
+<p><strong>返回值</strong></p>
+<p>方法执行后的返回值（仅当方法执行之后的判断有效，如‘unless’ ， @CachePut、@CacheEvict’的表达式beforeInvocation=false ）</p>
+<p>如 #result</p>
+<h2 id="四、-缓存使用"><a href="#四、-缓存使用" class="headerlink" title="四、 缓存使用"></a>四、 缓存使用</h2><h3 id="1-基本使用步骤"><a href="#1-基本使用步骤" class="headerlink" title="1. 基本使用步骤"></a>1. 基本使用步骤</h3><ol>
+<li>引入spring-boot-starter-cache模块</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>@EnableCaching开启缓存</p>
+<p>在主配置类上标注</p>
+</li>
+<li><p>使用缓存注解</p>
+<p>如@Cacheable、@CachePut</p>
+</li>
+<li><p>切换为其他缓存</p>
+</li>
+</ol>
+<h3 id="2-搭建实验环境"><a href="#2-搭建实验环境" class="headerlink" title="2. 搭建实验环境"></a>2. 搭建实验环境</h3><ol>
+<li><p>导入数据库文件 创建出department和employee表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for department</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`department`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`department`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`departmentName`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Table structure for employee</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`employee`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`employee`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`lastName`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`email`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`gender`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`d_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建javaBean封装数据</p>
+</li>
+<li><p>整合MyBatis操作数据库</p>
+<p>配置数据源信息</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">123</span></span><br><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/springboot?serverTimezone=GMT</span></span><br><span class="line"><span class="meta">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启驼峰命名法(否则部分字段封装不了)</span></span><br><span class="line"><span class="meta">mybatis.configuration.map-underscore-to-camel-case</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#打印sql</span></span><br><span class="line"><span class="meta">logging.level.cn.edu.ustc.springboot.mapper</span>=<span class="string">debug</span></span><br><span class="line"></span><br><span class="line"><span class="attr">debug</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<p>使用注解版的MyBatis；</p>
+<p>​    @MapperScan指定需要扫描的mapper接口所在的包</p>
+</li>
+<li><p>主配置类开启@EnableCaching</p>
+</li>
+</ol>
+<h3 id="3-快速体验缓存"><a href="#3-快速体验缓存" class="headerlink" title="3. 快速体验缓存"></a>3. 快速体验缓存</h3><p><strong>@Cacheable、@CachePut、@CacheEvict的使用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EmployeeMapper employeeMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Cacheable</span>(value=&#123;<span class="string">"emp"</span>&#125;,</span><br><span class="line">            key = <span class="string">"#id+#root.methodName+#root.caches[0].name"</span>,</span><br><span class="line">            condition = <span class="string">"#a0&gt;1"</span>,</span><br><span class="line">            unless = <span class="string">"#p0==2"</span></span><br><span class="line">    )</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Employee <span class="title">getEmpById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"查询员工："</span>+id);</span><br><span class="line">        <span class="keyword">return</span> employeeMapper.getEmpById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@CachePut</span>(value = &#123;<span class="string">"emp"</span>&#125;,key = <span class="string">"#employee.id"</span> )</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Employee <span class="title">updateEmp</span><span class="params">(Employee employee)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"更新员工"</span>+employee);</span><br><span class="line">        employeeMapper.updateEmp(employee);</span><br><span class="line">        <span class="keyword">return</span> employee;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@CacheEvict</span>(value = &#123;<span class="string">"emp"</span>&#125;,allEntries = <span class="keyword">true</span>,beforeInvocation = <span class="keyword">true</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">delEmp</span><span class="params">(Integer id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">        System.out.println(<span class="string">"删除员工："</span>+id);</span><br><span class="line">        employeeMapper.delEmp(id);</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>自定义KeyGenerator</strong></p>
+<p>使用时在注解属性内指定KeyGenerator=“myKeyGenerator”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCacheConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span>(<span class="string">"myKeyGenerator"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> KeyGenerator <span class="title">myKeyGenerator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> KeyGenerator()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">generate</span><span class="params">(Object target, Method method, Object... params)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> method.getName()+<span class="string">"["</span>+ Arrays.asList(params).toString()+target+<span class="string">"]"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>@CacheConfig</strong></p>
+<p>标注在类上，用于抽取@Cacheable的公共属性</p>
+<p>由于一个类中可能会使用多次@Cacheable等注解，所以各项属性可以抽取到@CacheConfig</p>
+<p><strong>@Caching</strong></p>
+<p>组合使用@Cacheable、@CachePut、@CacheEvict</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Caching</span>(</span><br><span class="line">       cacheable = &#123;</span><br><span class="line">           <span class="meta">@Cacheable</span>(<span class="comment">/*value="emp",*/</span>key = <span class="string">"#lastName"</span>)</span><br><span class="line">       &#125;,</span><br><span class="line">       put = &#123;</span><br><span class="line">           <span class="meta">@CachePut</span>(<span class="comment">/*value="emp",*/</span>key = <span class="string">"#result.id"</span>),</span><br><span class="line">           <span class="meta">@CachePut</span>(<span class="comment">/*value="emp",*/</span>key = <span class="string">"#result.email"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">  )</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Employee <span class="title">getEmpByLastName</span><span class="params">(String lastName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> employeeMapper.getEmpByLastName(lastName);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-工作原理"><a href="#4-工作原理" class="headerlink" title="4. 工作原理"></a>4. 工作原理</h3><p>缓存的自动配置类CacheAutoConfiguration向容器中导入了CacheConfigurationImportSelector，此类的selectImports()方法添加了许多配置类，其中SimpleCacheConfiguration默认生效</p>
+<p>​    GenericCacheConfiguration<br>​    JCacheCacheConfiguration<br>​    EhCacheCacheConfiguration<br>​    HazelcastCacheConfiguration<br>​    InfinispanCacheConfiguration<br>​    CouchbaseCacheConfiguration<br>​    RedisCacheConfiguration<br>​    CaffeineCacheConfiguration<br>​    GuavaCacheConfiguration<br>​    SimpleCacheConfiguration【默认】<br>​    NoOpCacheConfiguration</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Import</span>(&#123; CacheConfigurationImportSelector<span class="class">.<span class="keyword">class</span>, <span class="title">CacheManagerEntityManagerFactoryDependsOnPostProcessor</span>.<span class="title">class</span> &#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">CacheAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">CacheConfigurationImportSelector</span> <span class="keyword">implements</span> <span class="title">ImportSelector</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="keyword">public</span> String[] selectImports(AnnotationMetadata importingClassMetadata) &#123;</span><br><span class="line">			CacheType[] types = CacheType.values();</span><br><span class="line">			String[] imports = <span class="keyword">new</span> String[types.length];</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; types.length; i++) &#123;</span><br><span class="line">                <span class="comment">//将即将导入的各配置类存入字符数组内</span></span><br><span class="line">				imports[i] = CacheConfigurations.getConfigurationClass(types[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> imports;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>SimpleCacheConfiguration向容器中导入了ConcurrentMapCacheManager</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>(proxyBeanMethods = <span class="keyword">false</span>)</span><br><span class="line"><span class="meta">@ConditionalOnMissingBean</span>(CacheManager<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">Conditional</span>(<span class="title">CacheCondition</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">SimpleCacheConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="comment">//向容器中导入ConcurrentMapCacheManager</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function">ConcurrentMapCacheManager <span class="title">cacheManager</span><span class="params">(CacheProperties cacheProperties,</span></span></span><br><span class="line"><span class="function"><span class="params">			CacheManagerCustomizers cacheManagerCustomizers)</span> </span>&#123;</span><br><span class="line">		ConcurrentMapCacheManager cacheManager = <span class="keyword">new</span> ConcurrentMapCacheManager();</span><br><span class="line">		List&lt;String&gt; cacheNames = cacheProperties.getCacheNames();</span><br><span class="line">		<span class="keyword">if</span> (!cacheNames.isEmpty()) &#123;</span><br><span class="line">			cacheManager.setCacheNames(cacheNames);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> cacheManagerCustomizers.customize(cacheManager);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ConcurrentMapCacheManager使用ConcurrentMap以k-v的方式存储缓存缓存，下面以@Cacheable的运行流程为例说明ConcurrentMapCacheManager的作用。</p>
+<p><strong>==@Cacheable的运行流程==</strong></p>
+<ol>
+<li><p>方法运行之前，先去查询Cache（缓存组件），<strong>按照cacheNames指定的名字获取</strong>；<br>（CacheManager先获取相应的缓存），第一次获取缓存如果没有Cache组件会自动创建,并以cacheNames-cache对放入ConcurrentMap。</p>
+</li>
+<li><p>去Cache中查找缓存的内容，使用一个key，默认就是方法的参数；<br><strong>key是按照某种策略生成的</strong>；默认是使用keyGenerator生成的，默认使用SimpleKeyGenerator生成key；</p>
+<p>​    SimpleKeyGenerator生成key的默认策略；</p>
+<p>​        如果没有参数；key=new SimpleKey()；<br>​        如果有一个参数：key=参数的值<br>​        如果有多个参数：key=new SimpleKey(params)；</p>
+</li>
+<li><p>没有查到缓存就调用目标方法；</p>
+</li>
+<li><p>将目标方法返回的结果，放进缓存中</p>
+</li>
+</ol>
+<p>@Cacheable标注的方法执行之前先来检查缓存中有没有这个数据，默认按照参数的值作为key去查询缓存，<br>如果没有就运行方法并将结果放入缓存；以后再来调用就可以直接使用缓存中的数据；</p>
+<p>核心：<br>1）、使用CacheManager【ConcurrentMapCacheManager】按照名字得到Cache【ConcurrentMapCache】组件<br>2）、key使用keyGenerator生成的，默认是SimpleKeyGenerator</p>
+<p><strong>源码分析</strong></p>
+<p>默认使用ConcurrentMapCacheManager管理缓存，该类使用ConcurrentMap保存缓存，获取缓存如果没有Cache组件会自动创建,并以cacheNames-cache对放入ConcurrentMap。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrentMapCacheManager</span> <span class="keyword">implements</span> <span class="title">CacheManager</span>, <span class="title">BeanClassLoaderAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ConcurrentMap&lt;String, Cache&gt; cacheMap = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> dynamic = <span class="keyword">true</span>;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//获取缓存</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Cache <span class="title">getCache</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		Cache cache = <span class="keyword">this</span>.cacheMap.get(name);</span><br><span class="line">        <span class="comment">//如果没有缓存会自动创建</span></span><br><span class="line">		<span class="keyword">if</span> (cache == <span class="keyword">null</span> &amp;&amp; <span class="keyword">this</span>.dynamic) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (<span class="keyword">this</span>.cacheMap) &#123;</span><br><span class="line">				cache = <span class="keyword">this</span>.cacheMap.get(name);</span><br><span class="line">				<span class="keyword">if</span> (cache == <span class="keyword">null</span>) &#123;</span><br><span class="line">					cache = createConcurrentMapCache(name);</span><br><span class="line">					<span class="keyword">this</span>.cacheMap.put(name, cache);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> cache;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在@Cacheable标注方法执行前执行CacheAspectSupport的execute()方法，在该方法中会以一定的规则生成key，并尝试在缓存中通过该key获取值，若通过key获取到值则直接返回，不用执行@Cacheable标注方法，否则执行该方法获得返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CacheAspectSupport</span> <span class="keyword">extends</span> <span class="title">AbstractCacheInvoker</span></span></span><br><span class="line"><span class="class">		<span class="keyword">implements</span> <span class="title">BeanFactoryAware</span>, <span class="title">InitializingBean</span>, <span class="title">SmartInitializingSingleton</span> </span>&#123;</span><br><span class="line">    <span class="comment">//在执行@Cacheable标注的方法前执行此方法</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> Object <span class="title">execute</span><span class="params">(<span class="keyword">final</span> CacheOperationInvoker invoker, Method method, CacheOperationContexts contexts)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (contexts.isSynchronized()) &#123;</span><br><span class="line">			CacheOperationContext context = contexts.get(CacheableOperation<span class="class">.<span class="keyword">class</span>).<span class="title">iterator</span>().<span class="title">next</span>()</span>;</span><br><span class="line">			<span class="keyword">if</span> (isConditionPassing(context, CacheOperationExpressionEvaluator.NO_RESULT)) &#123;</span><br><span class="line">				Object key = generateKey(context, CacheOperationExpressionEvaluator.NO_RESULT);</span><br><span class="line">				Cache cache = context.getCaches().iterator().next();</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> wrapCacheValue(method, cache.get(key, () -&gt; unwrapReturnValue(invokeOperation(invoker))));</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">catch</span> (Cache.ValueRetrievalException ex) &#123;</span><br><span class="line">					<span class="keyword">throw</span> (CacheOperationInvoker.ThrowableWrapper) ex.getCause();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> invokeOperation(invoker);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">		processCacheEvicts(contexts.get(CacheEvictOperation<span class="class">.<span class="keyword">class</span>), <span class="title">true</span>,</span></span><br><span class="line"><span class="class">				<span class="title">CacheOperationExpressionEvaluator</span>.<span class="title">NO_RESULT</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 见findCachedItem方法</span></span><br><span class="line">        <span class="comment">//此方法通过一定规则生成的key找cache，若没找到则返回null</span></span><br><span class="line">		Cache.ValueWrapper cacheHit = findCachedItem(contexts.get(CacheableOperation<span class="class">.<span class="keyword">class</span>))</span>;</span><br><span class="line"></span><br><span class="line">		List&lt;CachePutRequest&gt; cachePutRequests = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">		<span class="keyword">if</span> (cacheHit == <span class="keyword">null</span>) &#123;</span><br><span class="line">			collectPutRequests(contexts.get(CacheableOperation<span class="class">.<span class="keyword">class</span>),</span></span><br><span class="line"><span class="class">					<span class="title">CacheOperationExpressionEvaluator</span>.<span class="title">NO_RESULT</span>, <span class="title">cachePutRequests</span>)</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		Object cacheValue;</span><br><span class="line">		Object returnValue;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (cacheHit != <span class="keyword">null</span> &amp;&amp; !hasCachePut(contexts)) &#123;</span><br><span class="line">			<span class="comment">// 如果通过该key找到缓存，且无@cacheput,则直接返回cacheValue</span></span><br><span class="line">			cacheValue = cacheHit.get();</span><br><span class="line">			returnValue = wrapCacheValue(method, cacheValue);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 若通过该key未找到缓存，则执行@cacheable标注方法</span></span><br><span class="line">			returnValue = invokeOperation(invoker);</span><br><span class="line">			cacheValue = unwrapReturnValue(returnValue);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Collect any explicit @CachePuts</span></span><br><span class="line">		collectPutRequests(contexts.get(CachePutOperation<span class="class">.<span class="keyword">class</span>), <span class="title">cacheValue</span>, <span class="title">cachePutRequests</span>)</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Process any collected put requests, either from @CachePut or a @Cacheable miss</span></span><br><span class="line">		<span class="keyword">for</span> (CachePutRequest cachePutRequest : cachePutRequests) &#123;</span><br><span class="line">			cachePutRequest.apply(cacheValue);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Process any late evictions</span></span><br><span class="line">		processCacheEvicts(contexts.get(CacheEvictOperation<span class="class">.<span class="keyword">class</span>), <span class="title">false</span>, <span class="title">cacheValue</span>)</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> returnValue;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">	<span class="keyword">private</span> Cache.<span class="function">ValueWrapper <span class="title">findCachedItem</span><span class="params">(Collection&lt;CacheOperationContext&gt; contexts)</span> </span>&#123;</span><br><span class="line">		Object result = CacheOperationExpressionEvaluator.NO_RESULT;</span><br><span class="line">		<span class="keyword">for</span> (CacheOperationContext context : contexts) &#123;</span><br><span class="line">			<span class="keyword">if</span> (isConditionPassing(context, result)) &#123;</span><br><span class="line">                <span class="comment">//通过一定规则生成key值(生成规则见generateKey方法)</span></span><br><span class="line">				Object key = generateKey(context, result);</span><br><span class="line">                <span class="comment">//通过生成的key寻找缓存</span></span><br><span class="line">				Cache.ValueWrapper cached = findInCaches(context, key);</span><br><span class="line">				<span class="keyword">if</span> (cached != <span class="keyword">null</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> cached;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">						logger.trace(<span class="string">"No cache entry for key '"</span> + key + <span class="string">"' in cache(s) "</span> + context.getCacheNames());</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//key的生成策略</span></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">generateKey</span><span class="params">(@Nullable Object result)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//如果@Cacheable设置了属性key，则根据设置值生成key</span></span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(<span class="keyword">this</span>.metadata.operation.getKey())) &#123;</span><br><span class="line">            EvaluationContext evaluationContext = createEvaluationContext(result);</span><br><span class="line">            <span class="keyword">return</span> evaluator.key(<span class="keyword">this</span>.metadata.operation.getKey(), <span class="keyword">this</span>.metadata.methodKey, evaluationContext);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//否则使用keyGenerator生成key，默认keyGenerator为SimpleKeyGenerator</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.metadata.keyGenerator.generate(<span class="keyword">this</span>.target, <span class="keyword">this</span>.metadata.method, <span class="keyword">this</span>.args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下使用SimpleKeyGenerator生成key</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleKeyGenerator</span> <span class="keyword">implements</span> <span class="title">KeyGenerator</span> </span>&#123;</span><br><span class="line">    <span class="comment">//SimpleKeyGenerator的生成规则</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">generateKey</span><span class="params">(Object... params)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//若无参，则返回空key</span></span><br><span class="line">		<span class="keyword">if</span> (params.length == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> SimpleKey.EMPTY;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (params.length == <span class="number">1</span>) &#123;</span><br><span class="line">			Object param = params[<span class="number">0</span>];</span><br><span class="line">			<span class="keyword">if</span> (param != <span class="keyword">null</span> &amp;&amp; !param.getClass().isArray()) &#123;</span><br><span class="line">                <span class="comment">//1个参数，则直接返回该参数</span></span><br><span class="line">				<span class="keyword">return</span> param;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">          <span class="comment">//多个参数返回数组</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> SimpleKey(params);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认的缓存类ConcurrentMapCache，使用ConcurrentMap存储k-v</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcurrentMapCache</span> <span class="keyword">extends</span> <span class="title">AbstractValueAdaptingCache</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//存储key-cacheValue</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ConcurrentMap&lt;Object, Object&gt; store;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//通过key查找cacheValue</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> Object <span class="title">lookup</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.store.get(key);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//方法调用完后将结果存入缓存中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(Object key, @Nullable Object value)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.store.put(key, toStoreValue(value));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="五、Redis与缓存"><a href="#五、Redis与缓存" class="headerlink" title="五、Redis与缓存"></a>五、Redis与缓存</h2><h3 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1. 环境搭建"></a>1. 环境搭建</h3><p>导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在spring.properties指定Redis服务器地址</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#redis服务器主机地址</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">192.168.31.162</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-RedisTemplate"><a href="#2-RedisTemplate" class="headerlink" title="2. RedisTemplate"></a>2. RedisTemplate</h3><p>RedisAutoConfiguration向容器中导入了两个类RedisTemplate&lt;Object, Object&gt; redisTemplate和StringRedisTemplate，作为Redis客户端分别操作k-v都为对象和k-v都为字符串的值</p>
+<p><strong>Redis常见的五大数据类型</strong></p>
+<p>String（字符串）、List（列表）、Set（集合）、Hash（散列）、ZSet（有序集合）</p>
+<p>​    stringRedisTemplate.opsForValue()[String（字符串）]</p>
+<p>​    stringRedisTemplate.opsForList()[List（列表）]</p>
+<p>​    stringRedisTemplate.opsForSet()[Set（集合）]</p>
+<p>​    stringRedisTemplate.opsForHash()[Hash（散列）]</p>
+<p>​    stringRedisTemplate.opsForZSet()[ZSet（有序集合）]</p>
+<h3 id="3-Redis缓存使用"><a href="#3-Redis缓存使用" class="headerlink" title="3. Redis缓存使用"></a>3. Redis缓存使用</h3><p>在导入redis依赖后RedisCacheConfiguration类就会自动生效，创建RedisCacheManager，并使用RedisCache进行缓存数据，要缓存的对象的类要实现Serializable接口，默认情况下是以<strong>jdk序列化数据</strong>存在redis中，如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">k:"emp::1"</span><br><span class="line">v:</span><br><span class="line">\xAC\xED\x00\x05sr\x00$cn.edu.ustc.springboot.bean.Employeeuqf\x03p\x9A\xCF\xE0\x02\x00\x05L\x00\x03dIdt\x00\x13Ljava/lang/Integer;L\x00\x05emailt\x00\x12Ljava/lang/String;L\x00\x06genderq\x00~\x00\x01L\x00\x02idq\x00~\x00\x01L\x00\x08lastNameq\x00~\x00\x02xpsr\x00\x11java.lang.Integer\x12\xE2\xA0\xA4\xF7\x81\x878\x02\x00\x01I\x00\x05valuexr\x00\x10java.lang.Number\x86\xAC\x95\x1D\x0B\x94\xE0\x8B\x02\x00\x00xp\x00\x00\x00\x03t\x00\x07cch@aaasq\x00~\x00\x04\x00\x00\x00\x01q\x00~\x00\x08t\x00\x03cch</span><br></pre></td></tr></table></figure>
+
+<p>要想让对象以<strong>json形式</strong>存储在redis中，需要自定义RedisCacheManager，使用GenericJackson2JsonRedisSerializer类对value进行序列化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRedisConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">RedisCacheManager <span class="title">cacheManager</span><span class="params">(RedisConnectionFactory factory)</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建默认RedisCacheWriter</span></span><br><span class="line">        RedisCacheWriter cacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(factory);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//创建默认RedisCacheConfiguration并使用GenericJackson2JsonRedisSerializer构造的		SerializationPair对value进行转换</span></span><br><span class="line">        <span class="comment">//创建GenericJackson2JsonRedisSerializer的json序列化器</span></span><br><span class="line">        GenericJackson2JsonRedisSerializer jsonRedisSerializer = <span class="keyword">new</span> GenericJackson2JsonRedisSerializer();</span><br><span class="line">        <span class="comment">//使用json序列化器构造出对转换Object类型的SerializationPair序列化对</span></span><br><span class="line">        RedisSerializationContext.SerializationPair&lt;Object&gt; serializationPair = RedisSerializationContext.SerializationPair.fromSerializer(jsonRedisSerializer);</span><br><span class="line">        <span class="comment">//将可以把Object转换为json的SerializationPair传入RedisCacheConfiguration</span></span><br><span class="line">        <span class="comment">//使得RedisCacheConfiguration在转换value时使用定制序列化器</span></span><br><span class="line">        RedisCacheConfiguration cacheConfiguration=RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(serializationPair);</span><br><span class="line">        </span><br><span class="line">        RedisCacheManager cacheManager = <span class="keyword">new</span> RedisCacheManager(cacheWriter,cacheConfiguration);</span><br><span class="line">        <span class="keyword">return</span> cacheManager;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>序列化数据如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">k:"emp::3"</span><br><span class="line"></span><br><span class="line">v:</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"@class"</span>: <span class="string">"cn.edu.ustc.springboot.bean.Employee"</span>,</span><br><span class="line">  <span class="attr">"id"</span>: <span class="number">3</span>,</span><br><span class="line">  <span class="attr">"lastName"</span>: <span class="string">"aaa"</span>,</span><br><span class="line">  <span class="attr">"email"</span>: <span class="string">"aaaa"</span>,</span><br><span class="line">  <span class="attr">"gender"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">"dId"</span>: <span class="number">5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>，这里必须用<strong>GenericJackson2JsonRedisSerializer</strong>进行value的序列化解析，如果使用Jackson2JsonRedisSerializer，序列化的json没有<code>&quot;@class&quot;: &quot;cn.edu.ustc.springboot.bean.Employee&quot;</code>,在读取缓存时会报类型转换异常。</p>
+<h3 id="4-Redis缓存原理"><a href="#4-Redis缓存原理" class="headerlink" title="4. Redis缓存原理"></a>4. Redis缓存原理</h3><p>配置类RedisCacheConfiguration向容器中导入了其定制的RedisCacheManager，在默认的RedisCacheManager的配置中，是使用jdk序列化value值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>(proxyBeanMethods = <span class="keyword">false</span>)</span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(RedisConnectionFactory<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(<span class="title">RedisAutoConfiguration</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">ConditionalOnBean</span>(<span class="title">RedisConnectionFactory</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">ConditionalOnMissingBean</span>(<span class="title">CacheManager</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">Conditional</span>(<span class="title">CacheCondition</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">RedisCacheConfiguration</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//向容器中导入RedisCacheManager</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function">RedisCacheManager <span class="title">cacheManager</span><span class="params">(CacheProperties cacheProperties, CacheManagerCustomizers cacheManagerCustomizers,</span></span></span><br><span class="line"><span class="function"><span class="params">			ObjectProvider&lt;org.springframework.data.redis.cache.RedisCacheConfiguration&gt; redisCacheConfiguration,</span></span></span><br><span class="line"><span class="function"><span class="params">			ObjectProvider&lt;RedisCacheManagerBuilderCustomizer&gt; redisCacheManagerBuilderCustomizers,</span></span></span><br><span class="line"><span class="function"><span class="params">			RedisConnectionFactory redisConnectionFactory, ResourceLoader resourceLoader)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//使用determineConfiguration()的返回值生成RedisCacheManagerBuilder</span></span><br><span class="line">        <span class="comment">//调用了RedisCacheManagerBuilder的cacheDefaults()方法(见下一代码块)</span></span><br><span class="line">        RedisCacheManagerBuilder builder = RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(</span><br><span class="line">				determineConfiguration(cacheProperties, redisCacheConfiguration, resourceLoader.getClassLoader()));</span><br><span class="line">		List&lt;String&gt; cacheNames = cacheProperties.getCacheNames();</span><br><span class="line">		<span class="keyword">if</span> (!cacheNames.isEmpty()) &#123;</span><br><span class="line">			builder.initialCacheNames(<span class="keyword">new</span> LinkedHashSet&lt;&gt;(cacheNames));</span><br><span class="line">		&#125;</span><br><span class="line">		redisCacheManagerBuilderCustomizers.orderedStream().forEach((customizer) -&gt; customizer.customize(builder));</span><br><span class="line">        <span class="comment">//使用RedisCacheManagerBuilder的build()方法创建RedisCacheManager并进行定制操作</span></span><br><span class="line">		<span class="keyword">return</span> cacheManagerCustomizers.customize(builder.build());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">private</span> org.springframework.data.redis.cache.<span class="function">RedisCacheConfiguration <span class="title">determineConfiguration</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">			CacheProperties cacheProperties,</span></span></span><br><span class="line"><span class="function"><span class="params">			ObjectProvider&lt;org.springframework.data.redis.cache.RedisCacheConfiguration&gt; redisCacheConfiguration,</span></span></span><br><span class="line"><span class="function"><span class="params">			ClassLoader classLoader)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//determineConfiguration()调用了createConfiguration()</span></span><br><span class="line">		<span class="keyword">return</span> redisCacheConfiguration.getIfAvailable(() -&gt; createConfiguration(cacheProperties, classLoader));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//createConfiguration()定义了其序列化value的规则</span></span><br><span class="line">	<span class="keyword">private</span> org.springframework.data.redis.cache.<span class="function">RedisCacheConfiguration <span class="title">createConfiguration</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">			CacheProperties cacheProperties, ClassLoader classLoader)</span> </span>&#123;</span><br><span class="line">		Redis redisProperties = cacheProperties.getRedis();</span><br><span class="line">		org.springframework.data.redis.cache.RedisCacheConfiguration config = org.springframework.data.redis.cache.RedisCacheConfiguration</span><br><span class="line">				.defaultCacheConfig();</span><br><span class="line">        <span class="comment">//使用jdk序列化器对value进行序列化</span></span><br><span class="line">		config = config.serializeValuesWith(</span><br><span class="line">				SerializationPair.fromSerializer(<span class="keyword">new</span> JdkSerializationRedisSerializer(classLoader)));</span><br><span class="line">        <span class="comment">//设置properties文件中设置的各项属性</span></span><br><span class="line">		<span class="keyword">if</span> (redisProperties.getTimeToLive() != <span class="keyword">null</span>) &#123;</span><br><span class="line">			config = config.entryTtl(redisProperties.getTimeToLive());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (redisProperties.getKeyPrefix() != <span class="keyword">null</span>) &#123;</span><br><span class="line">			config = config.prefixKeysWith(redisProperties.getKeyPrefix());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!redisProperties.isCacheNullValues()) &#123;</span><br><span class="line">			config = config.disableCachingNullValues();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!redisProperties.isUseKeyPrefix()) &#123;</span><br><span class="line">			config = config.disableKeyPrefix();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> config;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RedisCacheManager的直接构造类，该类保存了配置类RedisCacheConfiguration，该配置在会传递给RedisCacheManager</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisCacheManagerBuilder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">final</span> RedisCacheWriter cacheWriter;</span><br><span class="line">    	<span class="comment">//默认缓存配置使用RedisCacheConfiguration的默认配置</span></span><br><span class="line">    	<span class="comment">//该默认配置缓存时默认将k按字符串存储，v按jdk序列化数据存储(见下一代码块)</span></span><br><span class="line">		<span class="keyword">private</span> RedisCacheConfiguration defaultCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, RedisCacheConfiguration&gt; initialCaches = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">boolean</span> enableTransactions;</span><br><span class="line">		<span class="keyword">boolean</span> allowInFlightCacheCreation = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="title">RedisCacheManagerBuilder</span><span class="params">(RedisCacheWriter cacheWriter)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.cacheWriter = cacheWriter;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">    	<span class="comment">//传入RedisCacheManagerBuilder使用的缓存配置规则RedisCacheConfiguration类</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> RedisCacheManagerBuilder <span class="title">cacheDefaults</span><span class="params">(RedisCacheConfiguration defaultCacheConfiguration)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">			Assert.notNull(defaultCacheConfiguration, <span class="string">"DefaultCacheConfiguration must not be null!"</span>);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">this</span>.defaultCacheConfiguration = defaultCacheConfiguration;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//使用默认defaultCacheConfiguration创建RedisCacheManager</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisCacheManager <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">			RedisCacheManager cm = <span class="keyword">new</span> RedisCacheManager(cacheWriter, defaultCacheConfiguration, initialCaches,</span><br><span class="line">					allowInFlightCacheCreation);</span><br><span class="line"></span><br><span class="line">			cm.setTransactionAware(enableTransactions);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> cm;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RedisCacheConfiguration保存了许多缓存规则，这些规则都保存在RedisCacheManagerBuilder的RedisCacheConfiguration defaultCacheConfiguration属性中，并且当RedisCacheManagerBuilder创建RedisCacheManager传递过去</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisCacheConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> Duration ttl;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">boolean</span> cacheNullValues;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> CacheKeyPrefix keyPrefix;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">boolean</span> usePrefix;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> SerializationPair&lt;String&gt; keySerializationPair;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> SerializationPair&lt;Object&gt; valueSerializationPair;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ConversionService conversionService;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//默认缓存配置</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RedisCacheConfiguration <span class="title">defaultCacheConfig</span><span class="params">(@Nullable ClassLoader classLoader)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            DefaultFormattingConversionService conversionService = <span class="keyword">new</span> DefaultFormattingConversionService();</span><br><span class="line"></span><br><span class="line">            registerDefaultConverters(conversionService);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> RedisCacheConfiguration(Duration.ZERO, <span class="keyword">true</span>, <span class="keyword">true</span>, CacheKeyPrefix.simple(),</span><br><span class="line">                                     SerializationPair.fromSerializer(RedisSerializer.string()),<span class="comment">//key使用字符串</span></span><br><span class="line">                                               SerializationPair.fromSerializer(RedisSerializer.java(classLoader)), conversionService);</span><br><span class="line">        <span class="comment">//value按jdk序列化存储</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>RedisCacheManager在创建RedisCache时将RedisCacheConfiguration传递过去，并在创建RedisCache时通过createRedisCache()起作用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisCacheManager</span> <span class="keyword">extends</span> <span class="title">AbstractTransactionSupportingCacheManager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RedisCacheWriter cacheWriter;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RedisCacheConfiguration defaultCacheConfig;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, RedisCacheConfiguration&gt; initialCacheConfiguration;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">boolean</span> allowInFlightCacheCreation;</span><br><span class="line">    </span><br><span class="line">    	<span class="function"><span class="keyword">protected</span> RedisCache <span class="title">createRedisCache</span><span class="params">(String name, @Nullable RedisCacheConfiguration cacheConfig)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//如果调用该方法时RedisCacheConfiguration有值则使用定制的，否则则使用默认的RedisCacheConfiguration defaultCacheConfig，即RedisCacheManagerBuilder传递过来的配置</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> RedisCache(name, cacheWriter, cacheConfig != <span class="keyword">null</span> ? cacheConfig : defaultCacheConfig);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RedisCache，Redis缓存，具体负责将缓存数据序列化的地方，将RedisCacheConfiguration的序列化对SerializationPair提取出来并使用其定义的序列化方式分别对k和v进行序列化操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisCache</span> <span class="keyword">extends</span> <span class="title">AbstractValueAdaptingCache</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] BINARY_NULL_VALUE = RedisSerializer.java().serialize(NullValue.INSTANCE);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RedisCacheWriter cacheWriter;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RedisCacheConfiguration cacheConfig;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ConversionService conversionService;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(Object key, @Nullable Object value)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		Object cacheValue = preProcessCacheValue(value);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (!isAllowNullValues() &amp;&amp; cacheValue == <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(</span><br><span class="line">					<span class="string">"Cache '%s' does not allow 'null' values. Avoid storing null via '@Cacheable(unless=\"#result == null\")' or configure RedisCache to allow 'null' via RedisCacheConfiguration."</span>,</span><br><span class="line">					name));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在put k-v时使用cacheConfig中的k-v序列化器分别对k-v进行序列化</span></span><br><span class="line">		cacheWriter.put(name, createAndConvertCacheKey(key), serializeCacheValue(cacheValue), cacheConfig.getTtl());</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//从cacheConfig(即RedisCacheConfiguration)中获取KeySerializationPair并写入key值</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">byte</span>[] serializeCacheKey(String cacheKey) &#123;</span><br><span class="line">		<span class="keyword">return</span> ByteUtils.getBytes(cacheConfig.getKeySerializationPair().write(cacheKey));</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//从cacheConfig(即RedisCacheConfiguration)中获取ValueSerializationPair并写入key值</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">byte</span>[] serializeCacheValue(Object value) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (isAllowNullValues() &amp;&amp; value <span class="keyword">instanceof</span> NullValue) &#123;</span><br><span class="line">            <span class="keyword">return</span> BINARY_NULL_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ByteUtils.getBytes(cacheConfig.getValueSerializationPair().write(value));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析到这也就不难理解，要使用json保存序列化数据时，需要自定义RedisCacheManager，在RedisCacheConfiguration中定义序列化转化规则，并向RedisCacheManager传入我们自己定制的RedisCacheConfiguration了，我定制的序列化规则会跟随RedisCacheConfiguration一直传递到RedisCache，并在序列化时发挥作用。</p>
+<h1 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a><strong>延伸</strong></h1><p>&ensp;&ensp;&ensp;&ensp;<a href="https://blog.csdn.net/codingtu/article/details/82888891" target="_blank" rel="noopener">JetCache</a><br>&ensp;&ensp;&ensp;&ensp;<a href="https://blog.csdn.net/wilbertzhou/article/details/18888789" target="_blank" rel="noopener">JSR107介绍</a><br>&ensp;&ensp;&ensp;&ensp;<a href="https://github.com/alibaba/jetcache/wiki/Home_CN" target="_blank" rel="noopener">JetCache介绍</a><br>&ensp;&ensp;&ensp;&ensp;<a href="https://blog.csdn.net/codingtu/article/details/83053628" target="_blank" rel="noopener">Spring Cache框架</a><br>&ensp;&ensp;&ensp;&ensp;<a href="https://www.bilibili.com/video/BV1Et411Y7tQ" target="_blank" rel="noopener">SpringBoot-权威教程-雷丰阳</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span> Article Title:</span><a  href="/2020/10/18/2020-10-18-Cache/">Cache</a></p>
+        <p><span>Article Author:</span><a  href="/" title="Visit Funing Ma Personal Blog">Funing Ma</a></p>
+        <p><span>  Release Time:</span>2020-10-18 18:18:18</p>
+        <p><span>   Last Update:</span>2020-11-29 16:45:33</p>
+        <p>
+            <span>Original Link:</span><a class="post-url" href="/2020/10/18/2020-10-18-Cache/" title="Cache">https://mafuning.github.io/2020/10/18/2020-10-18-Cache/</a>
+        </p>
+        <p>
+            <span>License Agreement:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="https://freedomdefined.org/Licenses/CC-BY-SA-4.0" target="_blank" title="CC-BY-SA-4.0" target = "_blank">"CC-BY-SA-4.0"</a>
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a  href="/2020/09/19/2020-09-19-Spring-Bean-Life-Cycle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring Bean Life Cycle</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Content</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、-JSR107"><span class="toc-number">1.1.</span> <span class="toc-text">一、 JSR107</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、-Spring缓存抽象"><span class="toc-number">1.2.</span> <span class="toc-text">二、 Spring缓存抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、-重要缓存注解及概念"><span class="toc-number">1.3.</span> <span class="toc-text">三、 重要缓存注解及概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Cacheable-CachePut-CacheEvict-主要的参数"><span class="toc-number">1.3.1.</span> <span class="toc-text">1 . @Cacheable/@CachePut/@CacheEvict 主要的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-缓存可用的SpEL表达式"><span class="toc-number">1.3.2.</span> <span class="toc-text">2 . 缓存可用的SpEL表达式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、-缓存使用"><span class="toc-number">1.4.</span> <span class="toc-text">四、 缓存使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-基本使用步骤"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 基本使用步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-搭建实验环境"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 搭建实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-快速体验缓存"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 快速体验缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-工作原理"><span class="toc-number">1.4.4.</span> <span class="toc-text">4. 工作原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、Redis与缓存"><span class="toc-number">1.5.</span> <span class="toc-text">五、Redis与缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-环境搭建"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-RedisTemplate"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. RedisTemplate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Redis缓存使用"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. Redis缓存使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Redis缓存原理"><span class="toc-number">1.5.4.</span> <span class="toc-text">4. Redis缓存原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#延伸"><span class="toc-number">2.</span> <span class="toc-text">延伸</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="hide"  title="click hide content or display content">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "hide";
+    var valueShow = "dispaly";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/" title="Home"><i class="fa fa-home"></i></a>
+        
+        <a title="Article List"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2020/09/19/2020-09-19-Spring-Bean-Life-Cycle/" title="Next: Spring Bean Life Cycle">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/10/18/2020-10-18-Cache/">Cache</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/19/2020-09-19-Spring-Bean-Life-Cycle/">Spring Bean Life Cycle</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/08/18/2020-08-18-Spring-IOC/">Spring IOC</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/07/18/2020-07-18-Kafka/">Kafka</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/16/2020-06-16-Category-Tree/">Category Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/16/2020-05-16-DataBase-Optimization/">DataBase Optimization</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/2020-04-12-Netty/">Netty</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/31/2020-03-31-Algorithm-Knight-Tour/">Algorithm Knight Tour</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/30/2020-03-30-Algorithm-Floyd/">Algorithm Floyd</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Dijkstra/">Algorithm Dijkstra</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Kruskal/">Algorithm Kruskal</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Prim/">Algorithm Prim</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Greedy/">Algorithm Greedy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-KMP/">Algorithm KMP</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-Dynamic-Programming/">Algorithm Dynamic Programming</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-Divide-And-Conquer/">Algorithm Divide-And-Conquer</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Data-Structure-Graph/">Data Structure Graph</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/27/2020-03-27-Data-Structure-AVL-Tree/">Data Structure AVL Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/27/2020-03-27-Data-Structure-Binary-Sort-Tree/">Data Structure Binary Sort Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/26/2020-03-26-Data-Structure-Huffman-Tree/">Data Structure Huffman Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/25/2020-03-25-Algorithm-Heap-Sort/">Algorithm Heap Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/24/2020-03-24-Data-Structure-Binary-Tree/">Data Structure Binary Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Data-Structure-Hash-Table/">Data Structure Hash Table</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Algorithm-Fibonacci-Search/">Algorithm Fibonacci Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Algorithm-Interpolation-Search/">Algorithm Interpolation Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Binary-Search/">Algorithm Binary Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Linear-Search/">Algorithm Linear Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Radix-Sort/">Algorithm Radix Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Merge-Sort/">Algorithm Merge Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Quick-Sort/">Algorithm Quick Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%91-Chain-of-Responsibility/">Design Patterns(二十二) Chain of Responsibility</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%91-Strategy/">Design Patterns(二十一) Strategy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E3%80%91-State/">Design Patterns(二十) State</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E5%8D%81%E4%B9%9D%E3%80%91-Interpreter/">Design Patterns(十九) Interpreter</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E5%8D%81%E5%85%AB%E3%80%91-Memento/">Design Patterns(十八) Memento</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/20/2020-03-20-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%83%E3%80%91-Mediator/">Design Patterns(十七) Mediator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/20/2020-03-20-Design-Patterns%E3%80%90%E5%8D%81%E5%85%AD%E3%80%91-Observer/">Design Patterns(十六) Observer</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/19/2020-03-19-Design-Patterns%E3%80%90%E5%8D%81%E4%BA%94%E3%80%91-Iterator/">Design Patterns(十五) Iterator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/19/2020-03-19-Design-Patterns%E3%80%90%E5%8D%81%E5%9B%9B%E3%80%91-Visitor/">Design Patterns(十四) Visitor</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%89%E3%80%91-Command/">Design Patterns(十三) Command</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Design-Patterns%E3%80%90%E5%8D%81%E4%BA%8C%E3%80%91-Template-Method/">Design Patterns(十二) Template Method</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Algorithm-Shell-Sort/">Algorithm Shell Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Algorithm-Insertion-Sort/">Algorithm Insertion Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%80%E3%80%91-Proxy/">Design Patterns(十一) Proxy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Algorithm-Selection-Sort/">Algorithm Selection Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Algorithm-Bubble-Sort/">Algorithm Bubble Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Design-Patterns%E3%80%90%E5%8D%81%E3%80%91-Flyweight/">Design Patterns(十) Flyweight</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Design-Patterns%E3%80%90%E4%B9%9D%E3%80%91-Facade/">Design Patterns(九) Facade</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/15/2020-03-15-Algorithm-Sort-Introduction/">Algorithm Sort Introduction</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/14/2020-03-14-Design-Patterns%E3%80%90%E5%85%AB%E3%80%91-Composite/">Design Patterns(八) Composite</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/14/2020-03-14-Design-Patterns%E3%80%90%E4%B8%83%E3%80%91-Decorator/">Design Patterns(七) Decorator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/2020-03-13-Design-Patterns%E3%80%90%E5%85%AD%E3%80%91-Bridge/">Design Patterns(六) Bridge</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/2020-03-12-Design-Patterns%E3%80%90%E4%BA%94%E3%80%91-Adapter/">Design Patterns(五) Adapter</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/2020-03-12-Design-Patterns%E3%80%90%E5%9B%9B%E3%80%91-Builder/">Design Patterns(四) Builder</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/11/2020-03-11-Data-Structure-Stack/">Data Structure Stack</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/10/2020-03-10-Design-Patterns%E3%80%90%E4%B8%89%E3%80%91-Prototype/">Design Patterns(三) Prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/09/2020-03-09-Design-Patterns%E3%80%90%E4%BA%8C%E3%80%91-Factory/">Design Patterns(二) Factory</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/09/2020-03-09-Data-Structure-LinkedList/">Data Structure LinkedList</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Data-Structure-Sparse-Array/">Data Structure Sparse Array</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Data-Structure-Queue/">Data Structure Queue</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Design-Patterns%E3%80%90%E4%B8%80%E3%80%91-Singleton/">Design Patterns(一) Singleton</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/06/2020-03-06-Design-Principles/">Design Principles</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/06/2019-12-06-Mysql-Oracle-Mybatis-Annotation-Sql/">Mysql Oracle Mybatis Annotation Sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/03/2019-12-03-Mysql-UpdateBatch-Error/">Mysql UpdateBatch Error</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/19/2019-11-19-Mastering-Markdown/">Mastering Markdown</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/2019-11-18-Git-Handbook/">Git Handbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/17/2019-11-17-GitHub-Pages/">GitHub Pages</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/16/2019-11-16-Hello-World/">Hello World</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 Funing Ma
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://mafuning.github.io/" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span><a href="https://github.com/mafuning" target="_blank">Github</a></span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
