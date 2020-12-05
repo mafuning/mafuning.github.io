@@ -17,11 +17,11 @@
 <meta property="og:site_name" content="Funing Ma&#39;s Blog">
 <meta property="og:description" content="High performance scalable web applications often use a distributed in-memory data cache in front of or in place of robust persistent storage for some tasks. In Java Applications it is very common to u">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;JSR107_info.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;JSR107_Info.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;SpringCache.png">
-<meta property="og:updated_time" content="2020-11-29T12:50:23.163Z">
+<meta property="og:updated_time" content="2020-12-05T08:11:03.362Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;JSR107_info.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;mafuning.github.io&#x2F;2020&#x2F;10&#x2F;18&#x2F;2020-10-18-Cache&#x2F;JSR107_Info.png">
   
     <link rel="alternative" href="/atom.xml" title="Funing Ma&#39;s Blog" type="application/atom+xml">
   
@@ -286,26 +286,17 @@
 <a id="more"></a>
 
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><h2 id="一、-JSR107"><a href="#一、-JSR107" class="headerlink" title="一、 JSR107"></a>一、 JSR107</h2><p>Java Caching定义了5个核心接口</p>
-<ul>
-<li><p>CachingProvider</p>
+<p>CachingProvider</p>
 <p>定义了创建、配置、获取、管理和控制多个CacheManager。一个应用可以在运行期访问多个CachingProvider。</p>
-</li>
-<li><p>CacheManager</p>
-<p>定义了创建、配置、获取、管理和控制多个唯一命名的Cache，这些Cache存在于CacheManager的上下文中。一个CacheManager仅被一个CachingProvider所拥有。</p>
-</li>
-<li><p>Cache</p>
-<p>一个类似<strong>Map</strong>的数据结构并<strong>临时存储以Key为索引</strong>的值。一个Cache仅被一个<br>CacheManager所拥有。</p>
-</li>
-<li><p>Entry</p>
-<p>一个存储在Cache中的key-value对。</p>
-</li>
-<li><p>Expiry</p>
-<p>每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</p>
-<p>jsr107示意图：</p>
-<img src="/2020/10/18/2020-10-18-Cache/JSR107_info.png" class title="introduction">
-
-</li>
-</ul>
+<p>CacheManager</p>
+<p>  定义了创建、配置、获取、管理和控制多个唯一命名的Cache，这些Cache存在于CacheManager的上下文中。一个CacheManager仅被一个CachingProvider所拥有。</p>
+<p>Cache</p>
+<p>  一个类似<strong>Map</strong>的数据结构并<strong>临时存储以Key为索引</strong>的值。一个Cache仅被一个<br>  CacheManager所拥有。</p>
+<p>Entry</p>
+<p>  一个存储在Cache中的key-value对。</p>
+<p>Expiry</p>
+<p>  每一个存储在Cache中的条目有一个定义的有效期。一旦超过这个时间，条目为过期的状态。一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过ExpiryPolicy设置。</p>
+<p> jsr107示意图：<br> <img src="/2020/10/18/2020-10-18-Cache/JSR107_Info.png" class title="introduction"></p>
 <p><strong>使用JSR107需要导入如下包</strong></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.cache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cache-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -313,16 +304,8 @@
 <p>基于以上的一些不足，大杀器缓存框架JetCache出现，基于已有缓存的成熟产品，解决了上面产品的缺陷。主要表现在<br>（1）分布式缓存和内存型缓存可以共存，当共存时，优先访问内存，保护远程缓存；也可以只用某一种，分布式 or 内存<br>（2）自动刷新策略，防止某个缓存失效，访问量突然增大时，所有机器都去访问数据库，可能导致数据库挂掉<br>（3）利用不严格的分布式锁，对同一key，全局只有一台机器自动刷新</p>
 <h2 id="二、-Spring缓存抽象"><a href="#二、-Spring缓存抽象" class="headerlink" title="二、 Spring缓存抽象"></a>二、 Spring缓存抽象</h2><p>  Spring从3.1开始定义了org.springframework.cache.Cache<br>  和org.springframework.cache.CacheManager接口来<strong>统一</strong>不同的缓存技术；<br>  <strong>并支持使用JCache（JSR-107）</strong>注解简化我们开发；</p>
 <p>  Cache接口有以下功能：</p>
-<ul>
-<li><p>为缓存的组件规范定义，包含缓存的各种操作集合；</p>
-</li>
-<li><p>Spring提供了各种xxxCache的实现；如RedisCache，EhCacheCache ,<br>ConcurrentMapCache等；</p>
-<p>Spring缓存抽象：</p>
-<img src="/2020/10/18/2020-10-18-Cache/SpringCache.png" class title="introduction">
-
-
-</li>
-</ul>
+<p>  为缓存的组件规范定义，包含缓存的各种操作集合；<br>  Spring提供了各种xxxCache的实现；如RedisCache，EhCacheCache ,<br>    ConcurrentMapCache等；</p>
+<p>  Spring缓存抽象：<br>   <img src="/2020/10/18/2020-10-18-Cache/SpringCache.png" class title="introduction"></p>
 <h2 id="三、-重要缓存注解及概念"><a href="#三、-重要缓存注解及概念" class="headerlink" title="三、 重要缓存注解及概念"></a>三、 重要缓存注解及概念</h2><table>
 <thead>
 <tr>
@@ -359,58 +342,41 @@
 <td><strong>缓存数据时value序列化策略</strong></td>
 </tr>
 </tbody></table>
-<h3 id="1-Cacheable-CachePut-CacheEvict-主要的参数"><a href="#1-Cacheable-CachePut-CacheEvict-主要的参数" class="headerlink" title="1 . @Cacheable/@CachePut/@CacheEvict 主要的参数"></a>1 . @Cacheable/@CachePut/@CacheEvict 主要的参数</h3><ul>
-<li><p><strong>value</strong></p>
-<p>缓存名称，字符串/字符数组形式；</p>
-<p>如@Cacheable(value=”mycache”) 或者@Cacheable(value={”cache1”,”cache2”}</p>
-</li>
-<li><p><strong>key</strong></p>
-<p>缓存的key,需要按照SpEL表达式编写，如果不指定则按照方法所有参数进行组合；</p>
-<p>如@Cacheable(value=”testcache”,key=”#userName”)</p>
-</li>
-<li><p><strong>keyGenerator</strong></p>
-<p>key的生成器；可以自己指定key的生成器的组件id</p>
-<p>注意：key/keyGenerator：二选一使用;</p>
-</li>
-<li><p><strong>condition</strong></p>
-<p>缓存条件，使用SpEL编写，在调用方法之前之后都能判断；</p>
-<p>如@Cacheable(value=”testcache”,condition=”#userName.length()&gt;2”)</p>
-</li>
-<li><p><strong>unless</strong>（@CachePut、@Cacheable）</p>
-<p>用于否决缓存的条件，只在方法执行之后判断；</p>
-<p>如@Cacheable(value=”testcache”,unless=”#result ==null”)</p>
-</li>
-<li><p><strong>beforeInvocation</strong>（@CacheEvict）</p>
-<p>是否在执行前清空缓存，默认为false，false情况下方法执行异常则不会清空；</p>
-<p>如@CachEvict(value=”testcache”，beforeInvocation=true)</p>
-</li>
-<li><p><strong>allEntries</strong>（@CacheEvict）</p>
-<p>是否清空所有缓存内容，默认为false；</p>
-<p>如@CachEvict(value=”testcache”,allEntries=true)</p>
-</li>
-</ul>
+<h3 id="1-Cacheable-CachePut-CacheEvict-主要的参数"><a href="#1-Cacheable-CachePut-CacheEvict-主要的参数" class="headerlink" title="1 . @Cacheable/@CachePut/@CacheEvict 主要的参数"></a>1 . @Cacheable/@CachePut/@CacheEvict 主要的参数</h3><p><strong>value</strong></p>
+<p>  缓存名称，字符串/字符数组形式；</p>
+<p>  如@Cacheable(value=”mycache”) 或者@Cacheable(value={”cache1”,”cache2”}</p>
+<p><strong>key</strong></p>
+<p>  缓存的key,需要按照SpEL表达式编写，如果不指定则按照方法所有参数进行组合；</p>
+<p>  如@Cacheable(value=”testcache”,key=”#userName”)</p>
+<p><strong>keyGenerator</strong></p>
+<p>  key的生成器；可以自己指定key的生成器的组件id</p>
+<p>  注意：key/keyGenerator：二选一使用;</p>
+<p><strong>condition</strong></p>
+<p>  缓存条件，使用SpEL编写，在调用方法之前之后都能判断；</p>
+<p>  如@Cacheable(value=”testcache”,condition=”#userName.length()&gt;2”)</p>
+<p><strong>unless</strong>（@CachePut、@Cacheable）</p>
+<p>  用于否决缓存的条件，只在方法执行之后判断；</p>
+<p>  如@Cacheable(value=”testcache”,unless=”#result ==null”)</p>
+<p><strong>beforeInvocation</strong>（@CacheEvict）</p>
+<p>  是否在执行前清空缓存，默认为false，false情况下方法执行异常则不会清空；</p>
+<p>  如@CachEvict(value=”testcache”，beforeInvocation=true)</p>
+<p><strong>allEntries</strong>（@CacheEvict）</p>
+<p>  是否清空所有缓存内容，默认为false；</p>
+<p>  如@CachEvict(value=”testcache”,allEntries=true)</p>
 <h3 id="2-缓存可用的SpEL表达式"><a href="#2-缓存可用的SpEL表达式" class="headerlink" title="2 . 缓存可用的SpEL表达式"></a>2 . 缓存可用的SpEL表达式</h3><p><strong>root</strong></p>
 <p>表示根对象，不可省略</p>
-<ul>
-<li><p>被调用方法名                        <strong>methodName</strong> </p>
-<p>如 #root.methodName</p>
-</li>
-<li><p>被调用方法                            <strong>method</strong></p>
-<p>如 #root.method.name</p>
-</li>
-<li><p>目标对象                               <strong>target</strong></p>
-<p>如 #root.target</p>
-</li>
-<li><p>被调用的目标对象类           <strong>targetClass</strong></p>
-<p>如 #root.targetClass</p>
-</li>
-<li><p>被调用的方法的参数列表      <strong>args</strong>    </p>
-<p>如 #root.args[0]</p>
-</li>
-<li><p>方法调用使用的缓存列表      <strong>caches</strong></p>
-<p>如 #root.caches[0].name</p>
-</li>
-</ul>
+<p> 被调用方法名                        <strong>methodName</strong> </p>
+<p>  如 #root.methodName</p>
+<p> 被调用方法                            <strong>method</strong></p>
+<p>  如 #root.method.name</p>
+<p> 目标对象                               <strong>target</strong></p>
+<p>  如 #root.target</p>
+<p> 被调用的目标对象类           <strong>targetClass</strong></p>
+<p>  如 #root.targetClass</p>
+<p>被调用的方法的参数列表      <strong>args</strong>    </p>
+<p>  如 #root.args[0]</p>
+<p>方法调用使用的缓存列表      <strong>caches</strong></p>
+<p>  如 #root.caches[0].name</p>
 <p><strong>参数名</strong></p>
 <p>方法参数的名字. 可以直接 #参数名 ，也可以使用 #p0或#a0 的形式，0代表参数的索引；</p>
 <p>如 #iban 、 #a0 、 #p0</p>
@@ -554,7 +520,7 @@
         <p><span> Article Title:</span><a  href="/2020/10/18/2020-10-18-Cache/">Cache</a></p>
         <p><span>Article Author:</span><a  href="/" title="Visit Funing Ma Personal Blog">Funing Ma</a></p>
         <p><span>  Release Time:</span>2020-10-18 18:18:18</p>
-        <p><span>   Last Update:</span>2020-11-29 20:50:23</p>
+        <p><span>   Last Update:</span>2020-12-05 16:11:03</p>
         <p>
             <span>Original Link:</span><a class="post-url" href="/2020/10/18/2020-10-18-Cache/" title="Cache">https://mafuning.github.io/2020/10/18/2020-10-18-Cache/</a>
         </p>
@@ -650,7 +616,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/11/18/2020-11-18-Quick-Start/">Quick Start</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/18/2020-10-18-Cache/">Cache</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/19/2020-09-19-Spring-Bean-Life-Cycle/">Spring Bean Life Cycle</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/08/18/2020-08-18-Spring-IOC/">Spring IOC</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/07/18/2020-07-18-Kafka/">Kafka</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/16/2020-06-16-Category-Tree/">Category Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/16/2020-05-16-DataBase-Optimization/">DataBase Optimization</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/2020-04-12-Netty/">Netty</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/31/2020-03-31-Algorithm-Knight-Tour/">Algorithm Knight Tour</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/30/2020-03-30-Algorithm-Floyd/">Algorithm Floyd</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Dijkstra/">Algorithm Dijkstra</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Kruskal/">Algorithm Kruskal</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Prim/">Algorithm Prim</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Greedy/">Algorithm Greedy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-KMP/">Algorithm KMP</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-Dynamic-Programming/">Algorithm Dynamic Programming</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-Divide-And-Conquer/">Algorithm Divide-And-Conquer</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Data-Structure-Graph/">Data Structure Graph</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/27/2020-03-27-Data-Structure-AVL-Tree/">Data Structure AVL Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/27/2020-03-27-Data-Structure-Binary-Sort-Tree/">Data Structure Binary Sort Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/26/2020-03-26-Data-Structure-Huffman-Tree/">Data Structure Huffman Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/25/2020-03-25-Algorithm-Heap-Sort/">Algorithm Heap Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/24/2020-03-24-Data-Structure-Binary-Tree/">Data Structure Binary Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Data-Structure-Hash-Table/">Data Structure Hash Table</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Algorithm-Fibonacci-Search/">Algorithm Fibonacci Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Algorithm-Interpolation-Search/">Algorithm Interpolation Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Binary-Search/">Algorithm Binary Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Linear-Search/">Algorithm Linear Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Radix-Sort/">Algorithm Radix Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Merge-Sort/">Algorithm Merge Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Quick-Sort/">Algorithm Quick Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%91-Chain-of-Responsibility/">Design Patterns(二十二) Chain of Responsibility</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%91-Strategy/">Design Patterns(二十一) Strategy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E3%80%91-State/">Design Patterns(二十) State</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E5%8D%81%E4%B9%9D%E3%80%91-Interpreter/">Design Patterns(十九) Interpreter</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E5%8D%81%E5%85%AB%E3%80%91-Memento/">Design Patterns(十八) Memento</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/20/2020-03-20-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%83%E3%80%91-Mediator/">Design Patterns(十七) Mediator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/20/2020-03-20-Design-Patterns%E3%80%90%E5%8D%81%E5%85%AD%E3%80%91-Observer/">Design Patterns(十六) Observer</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/19/2020-03-19-Design-Patterns%E3%80%90%E5%8D%81%E4%BA%94%E3%80%91-Iterator/">Design Patterns(十五) Iterator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/19/2020-03-19-Design-Patterns%E3%80%90%E5%8D%81%E5%9B%9B%E3%80%91-Visitor/">Design Patterns(十四) Visitor</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%89%E3%80%91-Command/">Design Patterns(十三) Command</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Design-Patterns%E3%80%90%E5%8D%81%E4%BA%8C%E3%80%91-Template-Method/">Design Patterns(十二) Template Method</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Algorithm-Shell-Sort/">Algorithm Shell Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Algorithm-Insertion-Sort/">Algorithm Insertion Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%80%E3%80%91-Proxy/">Design Patterns(十一) Proxy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Algorithm-Selection-Sort/">Algorithm Selection Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Algorithm-Bubble-Sort/">Algorithm Bubble Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Design-Patterns%E3%80%90%E5%8D%81%E3%80%91-Flyweight/">Design Patterns(十) Flyweight</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Design-Patterns%E3%80%90%E4%B9%9D%E3%80%91-Facade/">Design Patterns(九) Facade</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/15/2020-03-15-Algorithm-Sort-Introduction/">Algorithm Sort Introduction</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/14/2020-03-14-Design-Patterns%E3%80%90%E5%85%AB%E3%80%91-Composite/">Design Patterns(八) Composite</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/14/2020-03-14-Design-Patterns%E3%80%90%E4%B8%83%E3%80%91-Decorator/">Design Patterns(七) Decorator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/2020-03-13-Design-Patterns%E3%80%90%E5%85%AD%E3%80%91-Bridge/">Design Patterns(六) Bridge</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/2020-03-12-Design-Patterns%E3%80%90%E4%BA%94%E3%80%91-Adapter/">Design Patterns(五) Adapter</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/2020-03-12-Design-Patterns%E3%80%90%E5%9B%9B%E3%80%91-Builder/">Design Patterns(四) Builder</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/11/2020-03-11-Data-Structure-Stack/">Data Structure Stack</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/10/2020-03-10-Design-Patterns%E3%80%90%E4%B8%89%E3%80%91-Prototype/">Design Patterns(三) Prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/09/2020-03-09-Data-Structure-LinkedList/">Data Structure LinkedList</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/09/2020-03-09-Design-Patterns%E3%80%90%E4%BA%8C%E3%80%91-Factory/">Design Patterns(二) Factory</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Data-Structure-Queue/">Data Structure Queue</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Data-Structure-Sparse-Array/">Data Structure Sparse Array</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Design-Patterns%E3%80%90%E4%B8%80%E3%80%91-Singleton/">Design Patterns(一) Singleton</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/06/2020-03-06-Design-Principles/">Design Principles</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/06/2019-12-06-Mysql-Oracle-Mybatis-Annotation-Sql/">Mysql Oracle Mybatis Annotation Sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/03/2019-12-03-Mysql-UpdateBatch-Error/">Mysql UpdateBatch Error</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/19/2019-11-19-Mastering-Markdown/">Mastering Markdown</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/2019-11-18-Git-Handbook/">Git Handbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/17/2019-11-17-GitHub-Pages/">GitHub Pages</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/16/2019-11-16-Hello-World/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/11/18/2020-11-18-Quick-Start/">Quick Start</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/10/18/2020-10-18-Cache/">Cache</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/09/19/2020-09-19-Spring-Bean-Life-Cycle/">Spring Bean Life Cycle</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/08/18/2020-08-18-Spring-IOC/">Spring IOC</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/07/18/2020-07-18-Kafka/">Kafka</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/16/2020-06-16-Category-Tree/">Category Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/16/2020-05-16-DataBase-Optimization/">DataBase Optimization</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/2020-04-12-Netty/">Netty</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/31/2020-03-31-Algorithm-Knight-Tour/">Algorithm Knight Tour</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/30/2020-03-30-Algorithm-Floyd/">Algorithm Floyd</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Dijkstra/">Algorithm Dijkstra</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Kruskal/">Algorithm Kruskal</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Prim/">Algorithm Prim</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/29/2020-03-29-Algorithm-Greedy/">Algorithm Greedy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-KMP/">Algorithm KMP</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-Dynamic-Programming/">Algorithm Dynamic Programming</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Algorithm-Divide-And-Conquer/">Algorithm Divide-And-Conquer</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/28/2020-03-28-Data-Structure-Graph/">Data Structure Graph</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/27/2020-03-27-Data-Structure-AVL-Tree/">Data Structure AVL Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/27/2020-03-27-Data-Structure-Binary-Sort-Tree/">Data Structure Binary Sort Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/26/2020-03-26-Data-Structure-Huffman-Tree/">Data Structure Huffman Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/25/2020-03-25-Algorithm-Heap-Sort/">Algorithm Heap Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/24/2020-03-24-Data-Structure-Binary-Tree/">Data Structure Binary Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Data-Structure-Hash-Table/">Data Structure Hash Table</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Algorithm-Fibonacci-Search/">Algorithm Fibonacci Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/23/2020-03-23-Algorithm-Interpolation-Search/">Algorithm Interpolation Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Binary-Search/">Algorithm Binary Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Linear-Search/">Algorithm Linear Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Radix-Sort/">Algorithm Radix Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Merge-Sort/">Algorithm Merge Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/22/2020-03-22-Algorithm-Quick-Sort/">Algorithm Quick Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%91-Chain-of-Responsibility/">Design Patterns(二十二) Chain of Responsibility</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%91-Strategy/">Design Patterns(二十一) Strategy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E4%BA%8C%E5%8D%81%E3%80%91-State/">Design Patterns(二十) State</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E5%8D%81%E4%B9%9D%E3%80%91-Interpreter/">Design Patterns(十九) Interpreter</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/21/2020-03-21-Design-Patterns%E3%80%90%E5%8D%81%E5%85%AB%E3%80%91-Memento/">Design Patterns(十八) Memento</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/20/2020-03-20-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%83%E3%80%91-Mediator/">Design Patterns(十七) Mediator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/20/2020-03-20-Design-Patterns%E3%80%90%E5%8D%81%E5%85%AD%E3%80%91-Observer/">Design Patterns(十六) Observer</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/19/2020-03-19-Design-Patterns%E3%80%90%E5%8D%81%E4%BA%94%E3%80%91-Iterator/">Design Patterns(十五) Iterator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/19/2020-03-19-Design-Patterns%E3%80%90%E5%8D%81%E5%9B%9B%E3%80%91-Visitor/">Design Patterns(十四) Visitor</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%89%E3%80%91-Command/">Design Patterns(十三) Command</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Design-Patterns%E3%80%90%E5%8D%81%E4%BA%8C%E3%80%91-Template-Method/">Design Patterns(十二) Template Method</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/18/2020-03-18-Algorithm-Shell-Sort/">Algorithm Shell Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Algorithm-Insertion-Sort/">Algorithm Insertion Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Design-Patterns%E3%80%90%E5%8D%81%E4%B8%80%E3%80%91-Proxy/">Design Patterns(十一) Proxy</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/17/2020-03-17-Algorithm-Selection-Sort/">Algorithm Selection Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Algorithm-Bubble-Sort/">Algorithm Bubble Sort</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Design-Patterns%E3%80%90%E5%8D%81%E3%80%91-Flyweight/">Design Patterns(十) Flyweight</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/16/2020-03-16-Design-Patterns%E3%80%90%E4%B9%9D%E3%80%91-Facade/">Design Patterns(九) Facade</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/15/2020-03-15-Algorithm-Sort-Introduction/">Algorithm Sort Introduction</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/14/2020-03-14-Design-Patterns%E3%80%90%E5%85%AB%E3%80%91-Composite/">Design Patterns(八) Composite</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/14/2020-03-14-Design-Patterns%E3%80%90%E4%B8%83%E3%80%91-Decorator/">Design Patterns(七) Decorator</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/2020-03-13-Design-Patterns%E3%80%90%E5%85%AD%E3%80%91-Bridge/">Design Patterns(六) Bridge</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/2020-03-12-Design-Patterns%E3%80%90%E4%BA%94%E3%80%91-Adapter/">Design Patterns(五) Adapter</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/12/2020-03-12-Design-Patterns%E3%80%90%E5%9B%9B%E3%80%91-Builder/">Design Patterns(四) Builder</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/11/2020-03-11-Data-Structure-Stack/">Data Structure Stack</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/10/2020-03-10-Design-Patterns%E3%80%90%E4%B8%89%E3%80%91-Prototype/">Design Patterns(三) Prototype</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/09/2020-03-09-Design-Patterns%E3%80%90%E4%BA%8C%E3%80%91-Factory/">Design Patterns(二) Factory</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/09/2020-03-09-Data-Structure-LinkedList/">Data Structure LinkedList</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Data-Structure-Sparse-Array/">Data Structure Sparse Array</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Design-Patterns%E3%80%90%E4%B8%80%E3%80%91-Singleton/">Design Patterns(一) Singleton</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/07/2020-03-07-Data-Structure-Queue/">Data Structure Queue</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/06/2020-03-06-Design-Principles/">Design Principles</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/06/2019-12-06-Mysql-Oracle-Mybatis-Annotation-Sql/">Mysql Oracle Mybatis Annotation Sql</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/03/2019-12-03-Mysql-UpdateBatch-Error/">Mysql UpdateBatch Error</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/19/2019-11-19-Mastering-Markdown/">Mastering Markdown</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/2019-11-18-Git-Handbook/">Git Handbook</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/17/2019-11-17-GitHub-Pages/">GitHub Pages</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/16/2019-11-16-Hello-World/">Hello World</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
